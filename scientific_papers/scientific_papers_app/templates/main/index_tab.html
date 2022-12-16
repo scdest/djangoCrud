@@ -1,0 +1,50 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Main
+{% endblock %}
+
+{% block content %}
+
+<h2>Усі статті нашого проекту "Каталог наукових статей".</h2>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Назва</th>
+        <th scope="col">Автор</th>
+        <th scope="col">Опис</th>
+        <th scope="col">Кількість цитувань</th>
+    </tr>
+    </thead>
+
+<tbody>
+{% if papers %}
+{% for el in papers %}
+<tr>
+    <th scope="row">{{el.id}}</th>
+    <td >{{el.title}}</td>
+    <td >{{el.author}}</td>
+    <td >{{el.text|truncatechars:50 }}</td>
+    <td >{{el.citations_count}}</td>
+    <td><a type="button" class="btn btn-secondary btn-sm" href="/scientific_papers_app/paper/{{el.id}}/view">Подробиці...</a>
+    <td><a type="button" class="btn btn-white btn-sm" href="/scientific_papers_app/paper/{{el.id}}/edit">
+        <img src="https://cdn-icons-png.flaticon.com/512/84/84380.png" width="24" height="24"></a></td>
+    </a>
+    <td><a type="button" class="btn btn-white btn-sm" href="/scientific_papers_app/paper/{{el.id}}/delete">
+        <img src="https://mpng.subpng.com/20180711/wru/kisspng-computer-icons-clip-art-delete-image-icon-5b45dc96b07912.1758854315313051107228.jpg" width="24" height="24">
+    </a>
+
+    </td>
+</tr>
+{% endfor %}
+{% else %}
+<p>Наразі обрані статті відсутні в каталозі...</p>
+{% endif %}
+</tbody>
+
+</table>
+
+
+
+{% endblock %}

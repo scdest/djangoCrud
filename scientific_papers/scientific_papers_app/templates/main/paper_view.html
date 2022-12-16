@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Стаття
+{% endblock %}
+
+{% block content %}
+
+<h1>Обрана стаття...</h1>
+
+{% if paper %}
+    <div class="alert alert-success mt-1">
+        <h3><u>{{ paper.title }}</u></h3>
+        <p><b><i>{{ paper.author }}</i></b></p>
+        <p><i>{{ paper.text }}</i></p>
+        <p>Кількість цитувань: {{ paper.citations_count }}</p>
+        <p><b>Рік видання: {{ paper.published }}</b></p>
+        <p><b>Зареєстровано: {{ paper.created }}</b></p>
+    </div>
+{% else %}
+    <p>В даному каталозі обраний запис відсутній.</p>
+{% endif %}
+
+
+{% endblock %}

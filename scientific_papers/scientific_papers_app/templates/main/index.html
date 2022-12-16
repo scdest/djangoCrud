@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+PAPERS
+{% endblock %}
+
+{% block content %}
+
+<h1>Головна сторінка проекту "Каталог наукових статей".</h1>
+
+{% if papers %}
+{% for el in papers %}
+    <div class="alert alert-success mt-1">
+        <h3><u>{{ el.title }}</u></h3>
+        <p><b><i>{{ el.author }}</i></b></p>
+        <p><i>{{ el.text }}</i></p>
+        <p>Кількість цитувань: {{ el.citations_count }}</p>
+        <p><b>Видано: {{ el.published }}</b></p>
+        <p><b>Зареєстровано: {{ el.created }}</b></p>
+    </div>
+{% endfor %}
+{% else %}
+    <p>В даному каталозі записи відсутні.</p>
+{% endif %}
+
+
+{% endblock %}

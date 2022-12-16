@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Додати статтю
+{% endblock %}
+
+{% block content %}
+
+<h1>Додати статтю</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="title"><b>Назва статті</b></label>
+    {{ form.title }}
+    <label for="author"><b>Автор</b></label>
+    {{ form.author }}
+    <label for="text"><b>Короткий опис</b></label>
+    {{ form.text }}
+    <label for="published"><b>Рік видання</b></label>
+    {{ form.published }}
+    <label for="citations_count"><b>Кількість цитувань</b></label>
+    {{ form.citations_count }}
+    <button type="submit" class="btn btn-success">Додати</button>
+
+</form>
+
+{% endblock %}
