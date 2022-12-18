@@ -2,36 +2,8 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.db.models import Q
-from faker import Faker
-import random
-
 from .models import Paper
 from .forms import PaperForm
-
-
-def new_paper(request):
-    n = request.GET.get('numbers')
-    fake = Faker()
-    for i in range(int(n)):
-        a = fake.name()
-        ttl = fake.sentences(1)[0]
-        txt = ' '.join(fake.sentences(3))
-        pub = fake.year()
-        c = random.randint(1, 20)
-        obj = Paper.objects.create(
-            title=ttl,
-            author=a,
-            text=txt,
-            published=pub,
-            citations_count=c
-        )
-        obj.save()
-
-    papers = Paper.objects.order_by('-id')
-    return render(request, 'main/index.html', {'title': 'Головна сторінка', 'papers': papers})
-
-
-
 
 def index(request):
     papers = Paper.objects.all()
@@ -46,7 +18,7 @@ def about(request):
 def start(request):
     return render(request, 'main/start.html')
 
-def create(request):
+def new_paper(request):
     if request.method == 'POST':
         form = PaperForm(request.POST)
         if form.is_valid():
